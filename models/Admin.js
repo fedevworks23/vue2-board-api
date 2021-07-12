@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const TableSchema = mongoose.Schema({
-  username: {
+const AdminSchema = mongoose.Schema({
+  userType: {
     type: String,
     required: true,
     unique: true,
@@ -17,4 +17,4 @@ const TableSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Table", TableSchema);
+module.exports = mongoose.model("Admin", AdminSchema);

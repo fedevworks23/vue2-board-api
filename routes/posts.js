@@ -1,21 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Post = require('../models/Post');
+const Post = require("../models/Post");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   // res.send('We are on posts');
   try {
     const getAllPosts = await Post.find().exec();
-    res.send({status: 200, data: getAllPosts});
+    res.send({ status: 200, data: getAllPosts });
   } catch (error) {
     res.status(500).send({ message: error });
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const post = new Post({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
   });
 
   try {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:postId', async (req, res) => {
+router.get("/:postId", async (req, res) => {
   try {
     const getByPostId = await Post.findById(req.params.postId);
     res.json(getByPostId);
@@ -35,7 +35,7 @@ router.get('/:postId', async (req, res) => {
   }
 });
 
-router.delete('/:postId', async (req, res) => {
+router.delete("/:postId", async (req, res) => {
   try {
     const deleteByPostId = await Post.deleteOne({ _id: req.params.postId });
     res.json(deleteByPostId);
@@ -44,7 +44,7 @@ router.delete('/:postId', async (req, res) => {
   }
 });
 
-router.put('/:postId', async (req, res) => {
+router.put("/:postId", async (req, res) => {
   try {
     const findByPostId = await Post.findById(req.params.postId);
     findByPostId.set(req.body);
