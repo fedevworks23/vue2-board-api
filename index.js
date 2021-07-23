@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 const adminRoute = require("./routes/admin");
+const usersRoute = require("./routes/users");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/admin", adminRoute);
+app.use("/users", usersRoute);
 
 app.get("/", (req, res) => {
   res.send("API Working");
